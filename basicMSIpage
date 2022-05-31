@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication1
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            
+        }
+        protected void Submission_OnClick(object sender, EventArgs e)
+        {
+            LoadSearchData();
+        }
+        protected void OnClick_Button1(object sender, EventArgs e)
+        {
+            Response.Write("Thank you For Registering");
+        }
+
+        private void LoadSearchData()
+        {
+            Response.Write("SUCCESS");
+        }
+        protected void btnsave_OnClick(object sender, EventArgs e)
+        {
+            {
+                StringBuilder sb = new StringBuilder();
+
+                if (FileUpload1.HasFile)
+                {
+                    try
+                    {   
+                        sb.AppendFormat(" Uploading file: {0}", FileUpload1.FileName);
+
+                        
+                        FileUpload1.SaveAs("W:\\Aditya\\" + FileUpload1.FileName);
+
+                        
+                        sb.AppendFormat("<br/> Save As: {0}", FileUpload1.PostedFile.FileName);
+                        sb.AppendFormat("<br/> File type: {0}", FileUpload1.PostedFile.ContentType);
+                        sb.AppendFormat("<br/> File length: {0}", FileUpload1.PostedFile.ContentLength);
+                        sb.AppendFormat("<br/> File name: {0}", FileUpload1.PostedFile.FileName);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        sb.Append("<br/> Error <br/>");
+                        sb.AppendFormat("Unable to save file <br/> {0}", ex.Message);
+                    }
+                }
+                else
+                {
+                    lblmessage.Text = sb.ToString();
+                }
+            }
+        }
+
+
+        protected void ibImage_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Write(this.IsPostBack + "<br />");
+            if (this.IsPostBack == true)
+                Response.Write("Value: user has clicked the hyperlink ");
+        }
+
+        protected void Check1_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Write(this.IsPostBack + "<br />");
+            if (this.IsPostBack == true)
+                Response.Write("Value: user has checked this box 1 ");
+        }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Write(this.IsPostBack + "<br />");
+            if (this.IsPostBack == true)
+                Response.Write("Value: user has checked this box 2");
+        }
+        protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Write(this.IsPostBack + "<br />");
+            if (this.IsPostBack == true)
+                Response.Write("Value: user has checked this box 3");
+        }
+        protected void box1_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Write(this.IsPostBack + "<br />");
+            if (this.IsPostBack == true)
+                Response.Write("Value: user has checked this box 3");
+        }
+        protected void Count1_CheckedChanged(object sender, EventArgs e)
+        {
+            string value = Request.Form["hfCount"];
+            Response.Write("Your current hit count is: + Value");
+        }
+    }
+}
